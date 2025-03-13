@@ -84,10 +84,10 @@ export const recordSale = async (req: Request, res: Response): Promise<void> => 
     }
 
     // Check if there's enough stock
-    if (product.stock < quantity) {
-      res.status(400).json({ message: 'Insufficient stock.' });
-      return;
-    }
+    // if (product.stock < quantity) {
+    //   res.status(400).json({ message: 'Insufficient stock.' });
+    //   return;
+    // }
 
     // Calculate total price
     const totalPrice = product.price * quantity;

@@ -40,9 +40,16 @@ export const recordAttendance = async (req: Request, res: Response): Promise<voi
     // Update expenses based on attendance
     let expenseAmount = 0;
     if (workType === 'absent') {
-      expenseAmount = employee.salary; // Full salary deduction for absence
+      console.log('a', workType, employee.salary)
+      expenseAmount = 0;
     } else if (workType === 'half-day') {
-      expenseAmount = employee.salary / 2; // Half salary deduction for half-day
+      console.log('b', workType, employee.salary)
+
+      expenseAmount = employee.salary / 2; 
+    } else if(workType === 'full-day'){
+      console.log('c', workType, employee.salary)
+
+      expenseAmount = employee.salary;
     }
 
     if (expenseAmount > 0) {
@@ -173,9 +180,11 @@ const recalculateExpenses = async (employee: any) => {
   for (const record of employee.attendance) {
     let expenseAmount = 0;
     if (record.workType === 'absent') {
-      expenseAmount = employee.salary; // Full salary deduction for absence
+      expenseAmount = 0; // Full salary deduction for absence
     } else if (record.workType === 'half-day') {
       expenseAmount = employee.salary / 2; // Half salary deduction for half-day
+    } else if(record.workType === 'full-day'){
+      expenseAmount = employee.salary;
     }
 
     if (expenseAmount > 0) {
